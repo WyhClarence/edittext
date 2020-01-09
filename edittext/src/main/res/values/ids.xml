@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="my_edit_max_length_text_id" type="id"/>
+    <item name="my_edit_look_icon_id" type="id"/>
+    <item name="my_edit_clear_icon_id" type="id"/>
+    <item name="my_edit_id" type="id"/>
+</resources>
