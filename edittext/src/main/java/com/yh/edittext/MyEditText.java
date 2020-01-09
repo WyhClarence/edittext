@@ -245,24 +245,21 @@ public class MyEditText extends RelativeLayout {
             ivLook.setBackground(lookIconUncheck);
 
             this.addView(ivLook);
-            ivLook.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                    if (isChecked) {
-                        ivLook.setBackground(lookIconChecked);
-                        editText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            ivLook.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+                if (isChecked) {
+                    ivLook.setBackground(lookIconChecked);
+                    editText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                } else {
+                    ivLook.setBackground(lookIconUncheck);
+                    if (passwordTransformationMethod == null) {
+                        editText.setTransformationMethod(new PasswordTransformationMethod());
                     } else {
-                        ivLook.setBackground(lookIconUncheck);
-                        if (passwordTransformationMethod == null) {
-                            editText.setTransformationMethod(new PasswordTransformationMethod());
-                        } else {
-                            editText.setTransformationMethod(passwordTransformationMethod);//讓密碼顯示為*
-                        }
+                        editText.setTransformationMethod(passwordTransformationMethod);//讓密碼顯示為*
                     }
-                    editText.setSelection(editText.getText().toString().length());
-                    if (lookOnClickListener != null) {
-                        lookOnClickListener.onClick(compoundButton);
-                    }
+                }
+                editText.setSelection(editText.getText().toString().length());
+                if (lookOnClickListener != null) {
+                    lookOnClickListener.onClick(compoundButton);
                 }
             });
         }
@@ -280,13 +277,10 @@ public class MyEditText extends RelativeLayout {
             this.addView(ivClear);
             //有了內容才顯示清除按鈕
             ivClear.setVisibility(GONE);
-            ivClear.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    editText.setText("");
-                    if (clearOnClickListener != null) {
-                        clearOnClickListener.onClick(view);
-                    }
+            ivClear.setOnClickListener(view -> {
+                editText.setText("");
+                if (clearOnClickListener != null) {
+                    clearOnClickListener.onClick(view);
                 }
             });
         }

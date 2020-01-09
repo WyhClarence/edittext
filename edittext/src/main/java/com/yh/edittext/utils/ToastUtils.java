@@ -14,7 +14,6 @@ public class ToastUtils {
      */
     private static void showToast(final Context context, final CharSequence text, final int duration) {
         new android.os.Handler(Looper.getMainLooper()).post(new Runnable() {
-            @SuppressLint("ShowToast")
             @Override
             public void run() {
                 if (context != null) {
