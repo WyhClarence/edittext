@@ -1,0 +1,2 @@
+include ':app', ':edittext'
+rootProject.name='My Application'
